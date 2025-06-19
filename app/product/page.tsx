@@ -1,7 +1,7 @@
 'use client'
 
+import React, { Suspense } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/lib/store'
 import { updateModelLikes, updateModelDownloads } from '@/lib/features/models/modelsSlice'
@@ -17,7 +17,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { PreviewSelector } from '@/components/3d/preview-selector';
 import { MdClear } from "react-icons/md";
 
-export default function ProductPage() {
+function ProductPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
@@ -244,5 +244,13 @@ export default function ProductPage() {
             </CardContent>
         </Card>
     </div>
+  )
+}
+
+export default function ProductPage() {
+  return (
+    <Suspense>
+      <ProductPageContent />
+    </Suspense>
   )
 }

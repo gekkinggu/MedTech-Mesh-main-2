@@ -1,8 +1,8 @@
 'use client'
 
+import React, { useEffect, useState, Suspense } from 'react'
 import { AvatarFallback } from '@/components/ui/avatar'
 import { Avatar } from '@radix-ui/react-avatar'
-import React, { useEffect, useState } from 'react'
 import { BiLike } from 'react-icons/bi';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import { Navbar } from '@/components/navbar';
@@ -67,7 +67,7 @@ interface UserProfile {
   }
 }
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const [activeTab, setActiveTab] = useState<TabType>('3d-models');
   const [sortBy, setSortBy] = useState('recent');
   const [profile, setProfile] = useState<UserProfile | null>(null)
@@ -257,5 +257,13 @@ export default function ProfilePage() {
       </div>
       <Footer/>
     </div>
+  )
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense>
+      <ProfilePageContent />
+    </Suspense>
   )
 }
