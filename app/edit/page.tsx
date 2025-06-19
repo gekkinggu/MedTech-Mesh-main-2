@@ -21,7 +21,6 @@ export default function EditPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar 
-        isLoggedIn={isLoggedIn} 
         onLogin={handleLogin}
         onLogout={handleLogout}
       />
